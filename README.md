@@ -13,5 +13,5 @@ Diretório de scripts de desenvolvimento em R
 - [José Lucas de Camargos](https://github.com/jlcamargos) - Professor
 
 
-### divine clams
+### Divine clams
 Que diremos, pois, a estas coisas? Se Deus é por nós, quem será contra nós? Romanos 8:31
