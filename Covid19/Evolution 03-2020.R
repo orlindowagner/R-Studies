@@ -82,6 +82,6 @@ acum_mort
 #Funciona perfeitamente para acum_cont resultando em R-squared = 0.9738 
 summary(lm(log(acum_cont)~ dados$dia))
 
-# ERRO 
-summary(lm(log(acum_mort)~ dados$dia))
+# Foi necessário adicionar 1 para evitar a situação de log(0), resultando R-sqared 0.8328
+summary(lm(log(acum_mort+1)~ dados$dia))
 
