@@ -75,3 +75,13 @@ plot(dados$dia,taxa_diaria)
 ## CONFERINDO DADOS ATUALIZADOS
 acum_cont
 acum_mort
+
+
+## TENTANDO UM AJUSTE POR UMA FUNÇÃO EXPONENCIAL
+
+#Funciona perfeitamente para acum_cont resultando em R-squared = 0.9738 
+summary(lm(log(acum_cont)~ dados$dia))
+
+# ERRO 
+summary(lm(log(acum_mort)~ dados$dia))
+
