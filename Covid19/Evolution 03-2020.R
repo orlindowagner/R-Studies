@@ -77,11 +77,36 @@ acum_cont
 acum_mort
 
 
-## TENTANDO UM AJUSTE POR UMA FUNÇÃO EXPONENCIAL
+## TENTANDO UM AJUSTE POR UMA FUNÇÃO EXPONENCIAL LINARIZADA - log(y) = log(x)
 
-#Funciona perfeitamente para acum_cont resultando em R-squared = 0.9738 
-summary(lm(log(acum_cont)~ dados$dia))
+#Funciona perfeitamente para acum_cont resultando em R-squared = 0.8652 
+summary(lm(log(acum_cont)~ log(dados$dia+1) ))
 
-# Foi necessário adicionar 1 para evitar a situação de log(0), resultando R-sqared 0.8328
-summary(lm(log(acum_mort+1)~ dados$dia))
+# Foi necessário adicionar 1 para evitar a situação de log(0), resultando R-squared 0.4949
+summary(lm(log(acum_mort+1)~ log(dados$dia+1) ))
+
+
+## TENTANDO UM AJUSTE POR UMA EXPONENCIAL DIRETAMENTE - MODELO NÃO LINEAR
+
+dados$acum_cont <- acum_cont
+
+nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.5))
+
+summary(nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.5)))
+
+# Tentando aplicar o modelo 
+a <- -188.91388
+b <- 45.3396
+c <- 0.14411
+
+dados$acum_estimado <- a+b*exp(c*dados$dia)
+dados$erro_quadrado <- (dados$acum_cont - dados$acum_estimado)^2
+
+#plotando os dados e o modelo encontrado
+plot(dados$dia,acum_cont)
+lines(dados$dia, dados$acum_estimado)
+
+# Verificando para o dia 50 (16 abr 2020 - quase 61 mil contaminados pelo vírus...
+dia_50 <- a+b*exp(c*50)
+dia_50
 
