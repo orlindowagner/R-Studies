@@ -82,7 +82,7 @@ acum_mort
 #Funciona perfeitamente para acum_cont resultando em R-squared = 0.8652 
 summary(lm(log(acum_cont)~ log(dados$dia+1) ))
 
-# Foi necessário adicionar 1 para evitar a situação de log(0), resultando R-squared 0.4949
+# Foi necessário adicionar 1 para evitar a situação de laog(0), resultando R-squared 0.4949
 summary(lm(log(acum_mort+1)~ log(dados$dia+1) ))
 
 
@@ -109,4 +109,7 @@ lines(dados$dia, dados$acum_estimado)
 # Verificando para o dia 50 (16 abr 2020 - quase 61 mil contaminados pelo vírus...
 dia_50 <- a+b*exp(c*50)
 dia_50
+
+#Ponto de verificação de atualização dos dados
+acum_mort
 
