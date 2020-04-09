@@ -112,4 +112,8 @@ dia_50
 
 #Ponto de verificação de atualização dos dados
 acum_mort
+acum_cont
+
+
+#OBS: estou com a impressão que os dados do site da globo estão sendo modificados muito frequentemente
 
