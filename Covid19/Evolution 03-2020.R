@@ -95,9 +95,9 @@ nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.5))
 summary(nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.5)))
 
 # Tentando aplicar o modelo 
-a <- 0 #a <- -188.91388
-b <- 31 # b <- 45.3396
-c <- 0.15  #c <- 0.14411
+a <- -188.91388
+b <- 45.3396
+c <- 0.14411
 
 dados$acum_estimado <- a+b*exp(c*dados$dia)
 dados$erro_quadrado <- (dados$acum_cont - dados$acum_estimado)^2
