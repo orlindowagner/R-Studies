@@ -90,14 +90,14 @@ summary(lm(log(acum_mort+1)~ log(dados$dia+1) ))
 
 dados$acum_cont <- acum_cont
 
-nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.5))
+nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2))
 
-summary(nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.5)))
+summary(nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2)))
 
 # Tentando aplicar o modelo 
-a <- -188.91388
-b <- 45.3396
-c <- 0.14411
+a <- -814.8117 # -188.91388
+b <-  221.0916 # 45.3396
+c <- 0.1019 #0.14411
 
 dados$acum_estimado <- a+b*exp(c*dados$dia)
 dados$erro_quadrado <- (dados$acum_cont - dados$acum_estimado)^2
@@ -106,7 +106,7 @@ dados$erro_quadrado <- (dados$acum_cont - dados$acum_estimado)^2
 plot(dados$dia,acum_cont)
 lines(dados$dia, dados$acum_estimado)
 
-# Verificando para o dia 50 (16 abr 2020 - quase 61 mil contaminados pelo vírus...
+# Verificando para o dia 50 (16 abr 2020 - cerca de 35 mil contaminados pelo vírus...
 dia_50 <- a+b*exp(c*50)
 dia_50
 
