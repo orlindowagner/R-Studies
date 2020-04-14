@@ -70,7 +70,10 @@ taxa_diaria <- c()
 taxa_diaria <- acum_mort / acum_cont * 100
 taxa_diaria
 plot(dados$dia,taxa_diaria)
+lines(dados$dia,taxa_diaria)
 
+# APLICANDO A REGRESSÃO LINEAR PARA A TAXA DE LETALIDADE (Incriveis R^2 ~0.9 )
+summary(lm(taxa_diaria ~dia, data = dados))
 
 ## CONFERINDO DADOS ATUALIZADOS
 acum_cont
@@ -95,21 +98,55 @@ nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2))
 summary(nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2)))
 
 # Tentando aplicar o modelo 
-a <- -814.8117 # -188.91388
-b <-  221.0916 # 45.3396
-c <- 0.1019 #0.14411
+a <- -949.94794 # -814.8117 # -188.91388
+b <-  267.44862 # 221.0916  # 45.3396
+c <-  0.09727   # 0.1019    # 0.14411
 
 dados$acum_estimado <- a+b*exp(c*dados$dia)
-dados$erro_quadrado <- (dados$acum_cont - dados$acum_estimado)^2
+#dados$erro_quadrado <- (dados$acum_cont - dados$acum_estimado)^2
 
 #plotando os dados e o modelo encontrado
 plot(dados$dia,acum_cont)
 lines(dados$dia, dados$acum_estimado)
 
-# Verificando para o dia 50 (16 abr 2020 - cerca de 35 mil contaminados pelo vírus...
+# Verificando para o dia 50 (16 abr 2020 - cerca de 33,7 mil contaminados pelo vírus...
 dia_50 <- a+b*exp(c*50)
 dia_50
 
 #Ponto de verificação de atualização dos dados
 acum_mort
 acum_cont
+
+
+## AJUSTE DE MODELO NÃO LINEAR PARA NUMERO DE MORTOS POR COVID19
+
+#plotando par numero de mortos - novo foco do estudo
+plot(dados$dia,acum_mort)
+lines(dados$dia,acum_mort)
+
+dados$acum_mort <- acum_mort
+
+nls(acum_mort ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2))
+summary(nls(acum_mort ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2)))
+
+# aplicando o modelo 
+a <- -33.0562 
+b <-  3.6604
+c <-  0.1272
+
+dados$acum_mort_estim <- a+b*exp(c*dados$dia)
+#dados$erro_quadrado <- (dados$acum_mort - dados$acum_mort_estimado)^2
+
+#plotando os dados e o modelo encontrado
+plot(dados$dia,acum_mort)
+lines(dados$dia, dados$acum_mort_estim)
+
+# Verificando para o dia 50 (16 abr 2020 - cerca de ~2 mil mortes pelo covid19)
+dia_mort_50 <- a+b*exp(c*50)
+dia_mort_50
+
+# Estima-se que no dia 22 abril teremos 500 mortes em um dia
+mort_dia_500 = a+b*exp(c*56)-(a+b*exp(c*55))
+mort_dia_500
+
+
