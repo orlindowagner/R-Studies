@@ -2,12 +2,12 @@
 
 ## Objetivo
 
-- Estudar a evolução da COVID19 e ajustar modelos matemáticos para predição
+- Estudar a evolução da COVID19 e ajustar modelos matemáticos para predição.
 
 ## Entradas
-- Número de contaminados à cada dia (* fonte:;
+- Número de contaminados à cada dia;
 - Número de mortos à cada dia;
-- Número de recuperados à cada dia;
+- Número de recuperados à cada dia.
 
 ### Fontes de coleta diária dos dados
 
@@ -41,11 +41,11 @@ mort500
 - Demora na apresentação dos dados do número de recuperados pela doença (o que torna essa informação inadequada para análise conjunta do numero de contaminados, mortos e recuperados);
 
 ## Sugestão de tomadas de decisão para direcionamento do estudo
-- Considerar mais relevantes o número de mortos;
+- Considerar mais relevante para predição os número de mortos.
 
 ## Sugestão de outros estudos
 
-- Qual o tempo médio para morte?
-- Considerar um atraso de 2 dias na atualização dos dados pelas autoriades de saúde;
+- Qual o tempo médio em dias para a morte de um indivíduo contaminado?
 - Considerar que levam de 11 à 14 dias para recuperar da doença e com base na curva de mortos estimar o real número de contaminados;
 - Estimar quanto tempo será necessário para curar 95% do total de casos;
+- Considerar um atraso de 2 dias na atualização dos dados pelas autoriades de saúde.
