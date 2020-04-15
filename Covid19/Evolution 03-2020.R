@@ -98,9 +98,9 @@ nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2))
 summary(nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2)))
 
 # Tentando aplicar o modelo 
-a <- -1.029e+03 # -949.94794 # -814.8117 # -188.91388
-b <-  2.953e+02 #  267.44862 # 221.0916  # 45.3396
-c <-  9.494e-02 #  0.09727   # 0.1019    # 0.14411
+a <- -1.008e+03 # -949.94794 # -814.8117 # -188.91388
+b <-  2.878e+02 #  267.44862 # 221.0916  # 45.3396
+c <-  9.555e-02 #  0.09727   # 0.1019    # 0.14411
 
 dados$acum_estimado <- a+b*exp(c*dados$dia)
 #dados$erro_quadrado <- (dados$acum_cont - dados$acum_estimado)^2
@@ -132,9 +132,9 @@ nls(acum_mort ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2))
 summary(nls(acum_mort ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2)))
 
 # aplicando o modelo 
-a <- -35.922548 # -33.0562 
-b <-  4.150804  #  3.6604
-c <-  0.124215  #  0.1272
+a <- -35.257387 # -33.0562 
+b <-   4.032916 #   3.6604
+c <-   0.124889 #   0.1272
 
 dados$acum_mort_estim <- a+b*exp(c*dados$dia)
 #dados$erro_quadrado <- (dados$acum_mort - dados$acum_mort_estimado)^2
