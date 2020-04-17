@@ -98,9 +98,9 @@ nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2))
 summary(nls(acum_cont ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2)))
 
 # Tentando aplicar o modelo 
-a <- -1.008e+03 # -949.94794 # -814.8117 # -188.91388
-b <-  2.878e+02 #  267.44862 # 221.0916  # 45.3396
-c <-  9.555e-02 #  0.09727   # 0.1019    # 0.14411
+a <- -1.098e+03 # -1.008e+03 # -949.94794 # -814.8117 # -188.91388
+b <-  3.194e+02 # 2.878e+02 #  267.44862 # 221.0916  # 45.3396
+c <-  9.314e-02 # 9.555e-02 #  0.09727   # 0.1019    # 0.14411
 
 dados$acum_estimado <- a+b*exp(c*dados$dia)
 #dados$erro_quadrado <- (dados$acum_cont - dados$acum_estimado)^2
@@ -109,7 +109,7 @@ dados$acum_estimado <- a+b*exp(c*dados$dia)
 plot(dados$dia,acum_cont)
 lines(dados$dia, dados$acum_estimado)
 
-# Verificando para o dia 50 (16 abr 2020 - cerca de 33 mil contaminados pelo vírus...
+# Verificando para o dia 50 (16 abr 2020 - cerca de 32,5 mil contaminados pelo vírus...
 dia_50 <- a+b*exp(c*50)
 dia_50
 
@@ -132,9 +132,9 @@ nls(acum_mort ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2))
 summary(nls(acum_mort ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2)))
 
 # aplicando o modelo 
-a <- -35.257387 # -33.0562 
-b <-   4.032916 #   3.6604
-c <-   0.124889 #   0.1272
+a <- -38.362738 # -35.257387 # -33.0562 
+b <-   4.553727 # 4.032916 #   3.6604
+c <-   0.122112 # 0.124889 #   0.1272
 
 dados$acum_mort_estim <- a+b*exp(c*dados$dia)
 #dados$erro_quadrado <- (dados$acum_mort - dados$acum_mort_estimado)^2
@@ -147,7 +147,7 @@ lines(dados$dia, dados$acum_mort_estim)
 dia_mort_50 <- a+b*exp(c*50)
 dia_mort_50
 
-# Estima-se que no dia 22 abril teremos 500 mortes em um dia
+# Estima-se que no dia 22 abril teremos 488 mortes em um dia
 mort_dia_500 = a+b*exp(c*56)-(a+b*exp(c*55))
 mort_dia_500
 
