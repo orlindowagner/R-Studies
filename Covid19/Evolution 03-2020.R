@@ -151,4 +151,13 @@ dia_mort_50
 mort_dia_500 = a+b*exp(c*56)-(a+b*exp(c*55))
 mort_dia_500
 
+summary(dados)
+
+
+VERIFICANDO À PARTIR DO DIA 50
+
+dias <- c(53:59)
+valores_estimados <- a+b*exp(c*dias)
+valores_estimados
+dados_projecoes <- dataframe(dias, valores_estimados)
 
