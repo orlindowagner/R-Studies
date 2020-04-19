@@ -151,13 +151,34 @@ dia_mort_50
 mort_dia_500 = a+b*exp(c*56)-(a+b*exp(c*55))
 mort_dia_500
 
-summary(dados)
 
 
-VERIFICANDO À PARTIR DO DIA 50
+# ESTUDANDO UMA MANEIRA DE CAPTAR OS COEFICIENTES 
 
-dias <- c(53:59)
+equacao <- nls(acum_mort ~a+b*exp(c*dia), data=dados, start = list( a=0, b=20, c=0.2))
+coef(equacao)
+coeficientes <- coef(equacao)
+coeficientes
+coeficientes[1]
+coeficientes[2]
+coeficientes[3]
+
+
+## TESTANDO A QUALIDADE DO MODELO
+
+#VERIFICANDO À PARTIR DO DIA 51
+
+dias <- c(52:58)
 valores_estimados <- a+b*exp(c*dias)
 valores_estimados
-dados_projecoes <- dataframe(dias, valores_estimados)
+
+dados_projecoes <- data.frame(dias, valores_estimados)
+dados_projecoes$valores_observados <- c(2141,0,0,0,0,0,0)
+dados_projecoes
+
+
+# SALVANDO O TXT COM OS VALORES OBSERVADOS NA SEMANA 
+write.table(dados_projecoes, "Dados_Projecoes.txt", row.names=FALSE, dec=",", quote=FALSE, sep="\t")
+
+
 
