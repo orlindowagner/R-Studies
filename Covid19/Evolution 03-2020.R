@@ -173,7 +173,7 @@ valores_estimados <- a+b*exp(c*dias)
 valores_estimados
 
 dados_projecoes <- data.frame(dias, valores_estimados)
-dados_projecoes$valores_observados <- c(2141,2347,2462,2575,2757,2906,0)
+dados_projecoes$valores_observados <- c(2141,2347,2462,2575,2757,2906,3313)
 dados_projecoes
 
 
