@@ -181,4 +181,59 @@ dados_projecoes
 write.table(dados_projecoes, "Dados_Projecoes.txt", row.names=FALSE, dec=",", quote=FALSE, sep="\t")
 
 
+# ESTUDO DE ERROS: AVALIANDO A QUALIDADE DO MODELO
+
+## ESTATISTICA DE ERRO PERCENTUAL
+
+observado <- dados_projecoes$valores_observados
+estimado <- valores_estimados
+
+Erro_Perc <- (observado-estimado)/observado * 100
+
+Erro_Perc
+
+plot(dias,Erro_Perc)
+lines(dias, Erro_Perc)
+
+dados_projecoes$Erro_Perc <- Erro_Perc
+dados_projecoes
+
+
+## ESTATISTICA RQEM
+
+mean(dados_projecoes$Erro_Perc)
+
+Obs_Est <- (dados_projecoes$valores_estimados - dados_projecoes$valores_observados) ^2
+Obs_Est
+
+dados_projecoes$Obs_Est <- Obs_Est
+dados_projecoes
+
+RQEM = 100/mean(observado) * sqrt((sum(observado - estimado)^2)/nrow(dados_projecoes))
+
+RQEM
+
+
+## ESTATISTICA MAE
+
+MAE = sum(abs(observado - estimado))/nrow(dados_projecoes)
+
+MAE
+
+## tentativa de calculo o coeficiente de correlação
+#### essa correlação para esse caso é entre os observados e estimados
+
+x <- estimado
+y <- observado
+
+numerador <- sum( (x - mean(x)) * (y - mean(y)) )
+numerador
+
+denominador <- sqrt( (sum((x - mean(x))^2)) * (sum((y - mean(y))^2)) )
+denominador
+
+
+r_xy <- numerador / denominador
+
+r_xy
 
