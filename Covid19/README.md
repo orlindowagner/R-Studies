@@ -47,3 +47,5 @@ mort500
 
 - Criar algoritmo de ajuste diário do modelo. Basicamente captar os coeficientes dia à dia;
 - Verificar a diferença de um modelo que inicie somente quando houve o primeiro caso de morte e comparar com o caso do modelo que considera a série constante.
+- [Modelo Logístico](http://w3.im.ufrj.br/~flavia/mac128/aulas/mac128_2019_08_14.pdf) - Estudo de outros modelos que podem ser ajustados
+- [Astúcias no R](http://ecologia.ib.usp.br/bie5782/doku.php?id=bie5782:03_apostila:03-funcoes) - Site que ensina recursos do R
