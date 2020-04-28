@@ -3,7 +3,7 @@ setwd('C:/Users/solarius/Google Drive/R-Studies/Covid19')
 
 dados <- read.table("03-2020.txt", header = FALSE, dec = ",")
 dados
-colnames(dados) <- c("dia_mes", "dia","cont_dia", "mort_dia")
+colnames(dados) <- c("dia_mes", "dia","cont_dia", "mort_dia", "recup_dia")
 dados
 
 #TENTATIVA DE APLICAR A REGRESSÃO LINEAR NOS DADOS DE TAXAS DIÁRIA
@@ -236,4 +236,44 @@ denominador
 r_xy <- numerador / denominador
 
 r_xy
+
+
+
+
+## TESTANDO MODELOS DIFERENTES - MODELO LOGISTICO (ajuste manual)
+#plotando os dados e o modelo encontrado
+
+
+sigmoides <- read.table("sigmoides.txt", header = FALSE, dec = ",")
+colnames(sigmoides) <- c("M", "k","A")
+sigmoides
+
+#Basta mudar o indice i para ajustar a curva desejada
+
+i <- 35
+k <- sigmoides$k[i]
+M <- sigmoides$M[i]
+A <- sigmoides$A[i]
+
+plot(dados$dia,acum_mort)
+#lines(dados$dia, dados$acum_mort_estim)
+lines(dados$dia, (M/(1+A*exp(-k*dados$dia)) ) )
+
+(M/(1+A*exp(-k*dados$dia)) )
+acum_mort
+
+(M/(1+A*exp(-k*dados$dia)) ) - acum_mort
+
+
+M
+k
+A
+
+
+
+## PARENTESIS - NUMERO DE RECUPERADOS
+sum(dados$cont_dia)
+sum(dados$mort_dia)
+sum(dados$recup_dia)
+
 
