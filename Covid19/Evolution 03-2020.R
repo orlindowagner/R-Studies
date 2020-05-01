@@ -250,7 +250,7 @@ sigmoides
 
 #Basta mudar o indice i para ajustar a curva desejada
 
-i <- 35
+i <- 65
 k <- sigmoides$k[i]
 M <- sigmoides$M[i]
 A <- sigmoides$A[i]
@@ -270,10 +270,12 @@ k
 A
 
 
-
+# PONTO DE VERIFICAÇÃO DOS DADOS ATUALIZADOS
+dados
 ## PARENTESIS - NUMERO DE RECUPERADOS
 sum(dados$cont_dia)
 sum(dados$mort_dia)
 sum(dados$recup_dia)
+
 
 
