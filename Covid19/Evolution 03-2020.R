@@ -270,6 +270,55 @@ k
 A
 
 
+# APLICAÇÃO DAS ESTATÍSTICAS PARA A AS SIGMOIDES
+# GERAR
+
+for (i in 1:nrow(sigmoides)){
+
+	k <- sigmoides$k[i]
+	M <- sigmoides$M[i]
+	A <- sigmoides$A[i]
+
+	observado <- dados$acum_mort
+	estimado <- (M/(1+A*exp(-k*dados$dia)) )
+
+
+	RQEM[i] <- 100/mean(observado) * sqrt((sum(observado - estimado)^2)/nrow(dados))
+
+	MAE[i] = sum(abs(observado - estimado))/nrow(dados)
+
+
+	x <- estimado
+	y <- observado
+
+	numerador <- sum( (x - mean(x)) * (y - mean(y)) )
+	denominador <- sqrt( (sum((x - mean(x))^2)) * (sum((y - mean(y))^2)) )
+
+
+	r_xy[i] <- numerador / denominador
+
+
+}
+RQEM
+MAE
+r_xy
+
+
+
+
+estatisticas <- c()
+estatisticas$RQEM <- RQEM
+estatisticas$MAE <- MAE
+estatisticas$r_xy <- r_xy
+estatisticas
+
+
+data.frame(estatisticas)
+
+# SALVANDO O TXT COM AS VALORES DAS ESTATISTICAS 
+write.table(estatisticas, "estatisticas.txt", row.names=FALSE, dec=",", quote=FALSE, sep="\t")
+
+
 # PONTO DE VERIFICAÇÃO DOS DADOS ATUALIZADOS
 dados
 ## PARENTESIS - NUMERO DE RECUPERADOS
