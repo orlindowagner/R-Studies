@@ -1,5 +1,5 @@
 #Configurando o diretorio de trabalho
-setwd('C:/Users/solarius/Google Drive/R-Studies/Covid19')
+setwd('C:/Users/solarius/Google Drive/R-Studies/Covid19/Evolution_covid')
 
 dados <- read.table("03-2020.txt", header = FALSE, dec = ",")
 dados

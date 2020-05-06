@@ -1,7 +1,7 @@
 #Configurando o diretorio de trabalho
 #setwd('C:/Users/OW/Documents/R-Studies/Covid19')
 
-setwd('C:/Users/solarius/Google Drive/R-Studies/Covid19')
+setwd('C:/Users/solarius/Google Drive/R-Studies/Covid19/Duplica_covid')
 
 dados <- read.table("dados.txt", header = FALSE, dec = ",")
 
