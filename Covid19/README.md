@@ -27,12 +27,11 @@
 - Ajuste de modelo não linear para a curva do numero acumulado de contaminados e mortos;
 - Estimar acontecimentos futuros:
 ``` 
-# Predizer o numero de contaminados e mortos no dia 50
-acum_estim_cont50
-acum_estim_mort50
+# Predizer o número de mortos em dado dia
 
-# Predizer quando teremos 500 mortes em 1 dia (previsão para o dia 56: 508 mortos)
-mort500
+y = M/( 1+A*exp(-kx) )  # modelo logístico
+
+# Predizer quando irá parar de morrer gente devido o Covid19
 ```
 ## Observações sobre últimos acontecimentos
 
@@ -41,7 +40,8 @@ mort500
 
 ## Sugestão de tomadas de decisão para direcionamento do estudo
 - Considerar mais relevante para predição os número de mortos;
-- Avaliar qualidade do modelo em um intervalo de predição de uma semana.
+- Avaliar qualidade do modelo em um intervalo de predição de uma semana;
+- Deixar claro os critérios para utilização do modelo escolhido.
 
 ## Sugestão de outros estudos
 
@@ -53,5 +53,5 @@ mort500
 
 ## Resultados até então obtidos
 
-- Gráficos de ajuste ou não do modelo
+- Gráficos de ajuste do modelo
 - Estatísticas para os modelos
