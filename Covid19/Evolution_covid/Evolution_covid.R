@@ -374,9 +374,28 @@ for (i in 2:n){
 }
 mortes_diarias
 
-plot(dias_proj, mortes_diarias)
-lines(dias_proj, mortes_diarias)
+#plot(dias_proj, mortes_diarias)
+plot(dados$dia, dados$mort_dia, xlim = c(1,n), main="Mortes diárias por covid19  no Brasil e projeção",xlab = "dias corridos (desde 26-fev-2020)", ylab="mortes diárias",col='blue')
+
+lines(dados$dia, dados$mort_dia, col='blue')
+lines(dias_proj, mortes_diarias, col='red')
+
 a
 b
 c
+
+#GERANDO GRÁFICOS PARA APRESENTAÇÕES
+
+plot(dados$dia, dados$acum_mort,main="Evolução do nº de mortes por covid19 no Brasil e projeção",xlab = "dias corridos (desde 26-fev-2020)", ylab="Total de mortes", xlim = c(1,n),ylim = c(1,a), col='blue')
+
+lines(dias_proj, projecoes_logi,col='red')
+
+
+
+#plot(dias_proj, mortes_diarias)
+plot(dados$dia, dados$mort_dia, xlim = c(1,n), main="Mortes diárias por covid19  no Brasil e projeção",xlab = "dias corridos (desde 26-fev-2020)", ylab="mortes diárias",col='blue')
+
+lines(dados$dia, dados$mort_dia, col='blue')
+lines(dias_proj, mortes_diarias, col='red')
+
 
