@@ -250,7 +250,7 @@ sigmoides
 
 #Basta mudar o indice i para ajustar a curva desejada
 
-i <- 65
+i <- 55
 k <- sigmoides$k[i]
 M <- sigmoides$M[i]
 A <- sigmoides$A[i]
@@ -264,7 +264,7 @@ acum_mort
 
 (M/(1+A*exp(-k*dados$dia)) ) - acum_mort
 
-
+i
 M
 k
 A
@@ -327,4 +327,56 @@ sum(dados$mort_dia)
 sum(dados$recup_dia)
 
 
+
+# ESTIMANDO MODELO LOGÍSTICO ATRAVÉS DA FUNÇÃO nls() do R
+
+modelo.logistico <- nls(acum_mort ~ a/(1+b*exp(-c* dia)), data=dados, start = list( a=3000, b=2000, c=0))
+modelo.logistico
+
+coeficientes <- coef(modelo.logistico)
+coeficientes
+a <- coeficientes[1]
+b <- coeficientes[2]
+c <- coeficientes[3]
+
+# flat em 30 mil (está gerando um pico no dia 79 com 764 mortes)
+i <- 70
+c <- sigmoides$k[i]
+a <- sigmoides$M[i]
+b <- sigmoides$A[i]
+
+
+
+## PROJEÇÕES DO DIA 0 AO DIA 120
+
+dias_proj <- c(0:120)
+projecoes_logi <- a/(1+b*exp(-c* dias_proj))
+projecoes_logi
+
+data.frame(dias_proj, projecoes_logi)
+
+
+## MORTES DIARIAS
+
+# Acumulado no numero de mortes
+mortes_diarias <- c()
+mortes_diarias[1] <- 0
+
+
+
+n <- nrow(data.frame(dias_proj, projecoes_logi))
+
+for (i in 2:n){
+
+	mortes_diarias[i] <- projecoes_logi[i] - projecoes_logi[i-1] 
+
+
+}
+mortes_diarias
+
+plot(dias_proj, mortes_diarias)
+lines(dias_proj, mortes_diarias)
+a
+b
+c
 
