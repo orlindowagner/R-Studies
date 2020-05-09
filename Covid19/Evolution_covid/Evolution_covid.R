@@ -386,16 +386,15 @@ c
 
 #GERANDO GRÁFICOS PARA APRESENTAÇÕES
 
+png(filename="Graphs/Evolution_covid19_BR.png") 
 plot(dados$dia, dados$acum_mort,main="Evolução do nº de mortes por covid19 no Brasil e projeção",xlab = "dias corridos (desde 26-fev-2020)", ylab="Total de mortes", xlim = c(1,n),ylim = c(1,a), col='blue')
-
 lines(dias_proj, projecoes_logi,col='red')
+dev.off()
 
 
-
-#plot(dias_proj, mortes_diarias)
+png(filename="Graphs/Mortes_diarias_covid19_BR.png") 
 plot(dados$dia, dados$mort_dia, xlim = c(1,n), main="Mortes diárias por covid19  no Brasil e projeção",xlab = "dias corridos (desde 26-fev-2020)", ylab="mortes diárias",col='blue')
-
 lines(dados$dia, dados$mort_dia, col='blue')
 lines(dias_proj, mortes_diarias, col='red')
-
+dev.off()
 
