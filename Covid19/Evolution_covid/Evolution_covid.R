@@ -330,7 +330,7 @@ sum(dados$recup_dia)
 
 # ESTIMANDO MODELO LOGÍSTICO ATRAVÉS DA FUNÇÃO nls() do R
 
-modelo.logistico <- nls(acum_mort ~ a/(1+b*exp(-c* dia)), data=dados, start = list( a=3000, b=2000, c=0))
+modelo.logistico <- nls(acum_mort ~ a/(1+b*exp(-c* dia)), data=dados, start = list( a=3000, b=2000, c=0.104))
 modelo.logistico
 
 coeficientes <- coef(modelo.logistico)
@@ -341,9 +341,9 @@ c <- coeficientes[3]
 
 # flat em 30 mil (está gerando um pico no dia 79 com 764 mortes)
 i <- 70
-c <- sigmoides$k[i]
-a <- sigmoides$M[i]
-b <- sigmoides$A[i]
+#c <- sigmoides$k[i]
+#a <- sigmoides$M[i]
+#b <- sigmoides$A[i]
 
 
 
