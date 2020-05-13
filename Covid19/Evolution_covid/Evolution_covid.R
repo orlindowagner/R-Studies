@@ -349,7 +349,7 @@ i <- 70
 
 ## PROJEÇÕES DO DIA 0 AO DIA 120
 
-dias_proj <- c(0:120)
+dias_proj <- c(0:140)
 projecoes_logi <- a/(1+b*exp(-c* dias_proj))
 projecoes_logi
 
@@ -397,4 +397,7 @@ plot(dados$dia, dados$mort_dia, xlim = c(1,n), main="Mortes diárias por covid19 
 lines(dados$dia, dados$mort_dia, col='blue')
 lines(dias_proj, mortes_diarias, col='red')
 dev.off()
+
+max(projecoes_logi)
+
 
