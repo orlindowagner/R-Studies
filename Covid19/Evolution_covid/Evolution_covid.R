@@ -401,3 +401,19 @@ dev.off()
 max(projecoes_logi)
 
 
+
+## AULA DOS TRÊS MODELOS
+
+
+modelo.logistico <- nls(acum_mort ~ a/(1+b*exp(-c* dia)), data=dados, start = list( a=3000, b=2000, c=0.104))
+modelo.logistico
+
+coeficientes <- coef(modelo.logistico)
+summary(modelo.logistico)
+
+lm(acum_cont ~dia, data = dados)
+summary(lm(acum_cont ~dia, data = dados))
+
+
+summary(nls(acum_mort ~d+e*exp(f*dia), data=dados, start = list( d=0, e=20, f=0.2)))
+
