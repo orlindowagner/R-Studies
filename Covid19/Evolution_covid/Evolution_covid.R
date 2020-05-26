@@ -319,13 +319,6 @@ data.frame(estatisticas)
 write.table(estatisticas, "estatisticas.txt", row.names=FALSE, dec=",", quote=FALSE, sep="\t")
 
 
-# PONTO DE VERIFICAÇÃO DOS DADOS ATUALIZADOS
-dados
-## PARENTESIS - NUMERO DE RECUPERADOS
-sum(dados$cont_dia)
-sum(dados$mort_dia)
-sum(dados$recup_dia)
-
 
 
 # ESTIMANDO MODELO LOGÍSTICO ATRAVÉS DA FUNÇÃO nls() do R
@@ -338,12 +331,6 @@ coeficientes
 a <- coeficientes[1]
 b <- coeficientes[2]
 c <- coeficientes[3]
-
-# flat em 30 mil (está gerando um pico no dia 79 com 764 mortes)
-i <- 70
-#c <- sigmoides$k[i]
-#a <- sigmoides$M[i]
-#b <- sigmoides$A[i]
 
 
 
@@ -370,27 +357,11 @@ for (i in 2:n){
 
 	mortes_diarias[i] <- projecoes_logi[i] - projecoes_logi[i-1] 
 
-
 }
-mortes_diarias
+#mortes_diarias
 
-#plot(dias_proj, mortes_diarias)
-plot(dados$dia, dados$mort_dia, xlim = c(1,n), main="Mortes diárias por covid19  no Brasil e projeção",xlab = "dias corridos (desde 26-fev-2020)", ylab="mortes diárias",col='blue')
-
-lines(dados$dia, dados$mort_dia, col='blue')
-lines(dias_proj, mortes_diarias, col='red')
-
-a
-b
-c
 
 #GERANDO GRÁFICOS PARA APRESENTAÇÕES
-
-png(filename="Graphs/Evolution_covid19_BR.png") 
-plot(dados$dia, dados$acum_mort,main=paste("Brasil total de:", round(max(projecoes_logi)),"mortes (estimativa)"),xlab = "dias corridos (desde 26-fev-2020)", ylab="Total de mortes", xlim = c(1,n),ylim = c(1,a), col='blue')
-lines(dias_proj, projecoes_logi,col='red')
-dev.off()
-
 
 png(filename="Graphs/Mortes_diarias_covid19_BR.png") 
 plot(dados$dia, dados$mort_dia, xlim = c(1,n), main="Mortes diárias por covid19  no Brasil e estimativa",xlab = "dias corridos (desde 26-fev-2020)", ylab="mortes diárias",col='blue')
@@ -398,22 +369,28 @@ lines(dados$dia, dados$mort_dia, col='blue')
 lines(dias_proj, mortes_diarias, col='red')
 dev.off()
 
-max(projecoes_logi)
+
+png(filename="Graphs/Evolution_covid19_BR.png") 
+plot(dados$dia, dados$acum_mort,main=paste("Brasil:", round(sum(dados$mort_dia)),"mortes; Estabilizando em:",round(max(projecoes_logi)) ),xlab = "dias corridos (desde 26-fev-2020)", ylab="Total de mortes", xlim = c(1,n),ylim = c(1,a), col='blue')
+lines(dias_proj, projecoes_logi,col='red')
+dev.off()
+
+
+plot(dados$dia, dados$acum_mort,main=paste("Brasil:", round(sum(dados$mort_dia)),"mortes; Estabilizando em:",round(max(projecoes_logi)) ),xlab = "dias corridos (desde 26-fev-2020)", ylab="Total de mortes", xlim = c(1,n),ylim = c(1,a), col='blue')
+lines(dias_proj, projecoes_logi,col='red')
+mort_dia_proj = round(mortes_diarias)
+data.frame(dias_proj, mort_dia_proj )
+round(max(projecoes_logi))
+round(max(mortes_diarias))
+
+# PONTO DE VERIFICAÇÃO DOS DADOS ATUALIZADOS
+
+## PARENTESIS - NUMERO DE RECUPERADOS
+sum(dados$cont_dia)
+sum(dados$mort_dia)
+sum(dados$recup_dia)
 
 
 
-## AULA DOS TRÊS MODELOS
 
-
-modelo.logistico <- nls(acum_mort ~ a/(1+b*exp(-c* dia)), data=dados, start = list( a=3000, b=2000, c=0.104))
-modelo.logistico
-
-coeficientes <- coef(modelo.logistico)
-summary(modelo.logistico)
-
-lm(acum_cont ~dia, data = dados)
-summary(lm(acum_cont ~dia, data = dados))
-
-
-summary(nls(acum_mort ~d+e*exp(f*dia), data=dados, start = list( d=0, e=20, f=0.2)))
 
