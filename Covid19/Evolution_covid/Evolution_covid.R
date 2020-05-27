@@ -316,7 +316,7 @@ estatisticas
 data.frame(estatisticas)
 
 # SALVANDO O TXT COM AS VALORES DAS ESTATISTICAS 
-write.table(estatisticas, "estatisticas.txt", row.names=FALSE, dec=",", quote=FALSE, sep="\t")
+#write.table(estatisticas, "estatisticas.txt", row.names=FALSE, dec=",", quote=FALSE, sep="\t")
 
 
 
