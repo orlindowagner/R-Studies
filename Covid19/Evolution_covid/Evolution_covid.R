@@ -390,7 +390,10 @@ sum(dados$cont_dia)
 sum(dados$mort_dia)
 sum(dados$recup_dia)
 
+diasTot = round(max(dados$dia)/(sum(dados$mort_dia)/max(projecoes_logi)))
+diasTot
 
-
-
-
+f = 0.85
+diasfp = f*diasTot - max(dados$dia)
+round(diasfp)
+round(f*diasTot)
