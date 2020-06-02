@@ -178,7 +178,7 @@ dados_projecoes
 
 
 # SALVANDO O TXT COM OS VALORES OBSERVADOS NA SEMANA 
-write.table(dados_projecoes, "Dados_Projecoes.txt", row.names=FALSE, dec=",", quote=FALSE, sep="\t")
+#write.table(dados_projecoes, "Dados_Projecoes.txt", row.names=FALSE, dec=",", quote=FALSE, sep="\t")
 
 
 # ESTUDO DE ERROS: AVALIANDO A QUALIDADE DO MODELO
