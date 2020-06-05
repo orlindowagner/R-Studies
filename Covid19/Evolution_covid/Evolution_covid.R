@@ -336,7 +336,7 @@ c <- coeficientes[3]
 
 ## PROJEÇÕES DO DIA 0 AO DIA 120
 
-dias_proj <- c(0:140)
+dias_proj <- c(0:190)
 projecoes_logi <- a/(1+b*exp(-c* dias_proj))
 projecoes_logi
 
@@ -379,7 +379,8 @@ dev.off()
 plot(dados$dia, dados$acum_mort,main=paste("Brasil:", round(sum(dados$mort_dia)),"mortes; Estabilizando em:",round(max(projecoes_logi)) ),xlab = "dias corridos (desde 26-fev-2020)", ylab="Total de mortes", xlim = c(1,n),ylim = c(1,a), col='blue')
 lines(dias_proj, projecoes_logi,col='red')
 mort_dia_proj = round(mortes_diarias)
-data.frame(dias_proj, mort_dia_proj )
+mort_real = round(mort_dia_proj*1.5)
+data.frame(dias_proj, mort_dia_proj, mort_real)
 round(max(projecoes_logi))
 round(max(mortes_diarias))
 
@@ -393,7 +394,7 @@ sum(dados$recup_dia)
 diasTot = round(max(dados$dia)/(sum(dados$mort_dia)/max(projecoes_logi)))
 diasTot
 
-f = 0.85
+f = 0.93
 diasfp = f*diasTot - max(dados$dia)
 round(diasfp)
 round(f*diasTot)
