@@ -398,3 +398,6 @@ f = 0.93
 diasfp = f*diasTot - max(dados$dia)
 round(diasfp)
 round(f*diasTot)
+
+Percentual = (sum(dados$mort_dia)/max(projecoes_logi))*100
+Percentual
