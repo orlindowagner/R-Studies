@@ -323,7 +323,7 @@ data.frame(estatisticas)
 
 # ESTIMANDO MODELO LOGÍSTICO ATRAVÉS DA FUNÇÃO nls() do R
 
-modelo.logistico <- nls(acum_mort ~ a/(1+b*exp(-c* dia)), data=dados, start = list( a=3000, b=2000, c=0.104))
+modelo.logistico <- nls(acum_mort ~ a/(1+b*exp(-c* dia)), data=dados, start = list( a=3000, b=2000, c=0.103))
 modelo.logistico
 
 coeficientes <- coef(modelo.logistico)
